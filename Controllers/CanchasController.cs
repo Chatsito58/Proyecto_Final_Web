@@ -57,7 +57,7 @@ namespace Proyecto_Final_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCancha,Nombre,TipoCancha,Ubicacion,Descripcion,Activa,FechaCreacion,FechaActualizacion")] Cancha cancha)
+        public async Task<IActionResult> Create([Bind("IdCancha,Nombre,TipoCancha,Ubicacion,Descripcion,PrecioHora,Activa,FechaCreacion,FechaActualizacion")] Cancha cancha)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace Proyecto_Final_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCancha,Nombre,TipoCancha,Ubicacion,Descripcion,Activa,FechaCreacion,FechaActualizacion")] Cancha cancha)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCancha,Nombre,TipoCancha,Ubicacion,Descripcion,PrecioHora,Activa,FechaCreacion,FechaActualizacion")] Cancha cancha)
         {
             if (id != cancha.IdCancha)
             {

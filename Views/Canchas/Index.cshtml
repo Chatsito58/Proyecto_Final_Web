@@ -460,6 +460,9 @@
                                         <th class="th-icon-descripcion">
                                             @Html.DisplayNameFor(model => model.Descripcion)
                                         </th>
+                                        <th class="th-icon-precio-hora">
+                                            @Html.DisplayNameFor(model => model.PrecioHora)
+                                        </th>
                                         <th class="th-icon-activa">
                                             @Html.DisplayNameFor(model => model.Activa)
                                         </th>
@@ -487,6 +490,9 @@
                                             </td>
                                             <td data-label="@Html.DisplayNameFor(model => model.Descripcion)">
                                                 @Html.DisplayFor(modelItem => item.Descripcion)
+                                            </td>
+                                            <td data-label="@Html.DisplayNameFor(model => model.PrecioHora)">
+                                                @Html.DisplayFor(modelItem => item.PrecioHora)
                                             </td>
                                             <td data-label="@Html.DisplayNameFor(model => model.Activa)">
                                                 @Html.DisplayFor(modelItem => item.Activa)
