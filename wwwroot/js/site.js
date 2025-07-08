@@ -2,3 +2,10 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+window.addEventListener('pageshow', function (evt) {
+    if (evt.persisted) {   // la página viene del back/forward cache
+        window.location.reload();
+    }
+});
+
