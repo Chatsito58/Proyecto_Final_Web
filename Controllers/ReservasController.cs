@@ -66,6 +66,8 @@ namespace Proyecto_Final_Web.Controllers
             var userRole = int.Parse(User.FindFirst("IdRol")?.Value ?? "0");
             var userId = int.Parse(User.FindFirst("IdUsuario")?.Value ?? "0");
 
+            ViewBag.ClienteActual = userId;
+
             ViewData["IdCancha"] = new SelectList(_context.Canchas, "IdCancha", "Nombre");
 
             if (userRole == 4) // Cliente

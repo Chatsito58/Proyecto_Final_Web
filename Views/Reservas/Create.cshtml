@@ -307,7 +307,7 @@
                                     </label>
                                     @if (User.IsInRole("Cliente"))
                                     {
-                                        <input asp-for="IdCliente" class="form-control" type="hidden" />
+                                        <input asp-for="IdCliente" value="@ViewBag.ClienteActual" type="hidden" />
                                         <input value="@User.FindFirst("NombreCompleto")?.Value" class="form-control" readonly />
                                     }
                                     else
