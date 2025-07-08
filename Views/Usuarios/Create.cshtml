@@ -1,7 +1,13 @@
-﻿@model Proyecto_Final_Web.Models.Usuario
+@model Proyecto_Final_Web.Models.Usuario
 
 @{
     ViewData["Title"] = "Create";
+    bool hideLayout = ViewData["HideLayout"] as bool? ?? false;
+    bool isPublicRegister = ViewData["IsPublicRegister"] as bool? ?? false;
+    if (hideLayout)
+    {
+        Layout = null;
+    }
 }
 
 <head>
@@ -545,7 +551,7 @@
                         <h4>Registra un nuevo usuario en el sistema</h4>
                     </div>
 
-                    <form asp-action="Create" method="post">
+                    <form asp-action="@(isPublicRegister ? "Register" : "Create")" method="post">
                         <div asp-validation-summary="ModelOnly" class="validation-summary text-danger">
                             <strong><i class="fas fa-exclamation-triangle"></i>Por favor corrige los siguientes errores:</strong>
                         </div>
@@ -553,9 +559,13 @@
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label asp-for="IdRol" class="control-label">Rol</label>
-                                    <select asp-for="IdRol" class="form-control" asp-items="ViewBag.IdRol">
+                                    <select asp-for="IdRol" class="form-control" asp-items="ViewBag.IdRol" @(isPublicRegister ? "disabled" : "")>
                                         <option value="">-- Seleccione un Rol --</option>
                                     </select>
+                                    @if (isPublicRegister)
+                                    {
+                                        <input type="hidden" asp-for="IdRol" />
+                                    }
                                     <span asp-validation-for="IdRol" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
@@ -582,10 +592,20 @@
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center mt-4">
-                            <a asp-action="Index" class="btn btn-outline-secondary back-link">
-                                <i class="fas fa-arrow-left me-2"></i>
-                                Volver al Listado
-                            </a>
+                            @if (isPublicRegister)
+                            {
+                                <a asp-controller="Acceso" asp-action="Index" class="btn btn-outline-secondary back-link">
+                                    <i class="fas fa-arrow-left me-2"></i>
+                                    Volver al Login
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index" class="btn btn-outline-secondary back-link">
+                                    <i class="fas fa-arrow-left me-2"></i>
+                                    Volver al Listado
+                                </a>
+                            }
 
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save me-2"></i>

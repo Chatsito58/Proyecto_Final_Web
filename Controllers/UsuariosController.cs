@@ -206,6 +206,39 @@ namespace Proyecto_Final_Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Usuarios/Register
+        [AllowAnonymous]
+        public IActionResult Register()
+        {
+            ViewData["HideLayout"] = true;
+            ViewData["IsPublicRegister"] = true;
+            ViewData["IdRol"] = new SelectList(_context.Roles.Where(r => r.IdRol == 4), "IdRol", "Nombre");
+            var usuario = new Usuario { IdRol = 4 };
+            return View("Create", usuario);
+        }
+
+        // POST: Usuarios/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([Bind("NombreCompleto,Correo,Contrasena,Telefono")] Usuario usuario)
+        {
+            ModelState.Remove("IdRolNavigation");
+            usuario.IdRol = 4;
+
+            if (ModelState.IsValid)
+            {
+                usuario.FechaRegistro = DateTime.Now;
+                _context.Add(usuario);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Acceso");
+            }
+            ViewData["HideLayout"] = true;
+            ViewData["IsPublicRegister"] = true;
+            ViewData["IdRol"] = new SelectList(_context.Roles.Where(r => r.IdRol == 4), "IdRol", "Nombre", usuario.IdRol);
+            return View("Create", usuario);
+        }
+
         private bool UsuarioExists(int id)
         {
             return _context.Usuarios.Any(e => e.IdUsuario == id);
