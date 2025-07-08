@@ -491,15 +491,15 @@
                                                         var targetUserRole = item.IdRol;
 
                                                         bool canEditDelete = false;
-                                                        if (User.IsInRole("gerente"))
+                                                        if (User.IsInRole("Gerente"))
                                                         {
                                                             canEditDelete = true;
                                                         }
-                                                        else if (User.IsInRole("administrador") && targetUserRole >= 3) // Admin puede editar/eliminar Empleados y Clientes
+                                                        else if (User.IsInRole("Administrador") && targetUserRole >= 3) // Admin puede editar/eliminar Empleados y Clientes
                                                         {
                                                             canEditDelete = true;
                                                         }
-                                                        else if (User.IsInRole("empleado") && targetUserRole == 4) // Empleado solo puede editar/eliminar Clientes
+                                                        else if (User.IsInRole("Empleado") && targetUserRole == 4) // Empleado solo puede editar/eliminar Clientes
                                                         {
                                                             canEditDelete = true;
                                                         }
