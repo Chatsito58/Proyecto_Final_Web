@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Final_Web.Models;
+using Proyecto_Final_Web.Logica;
 
 namespace Proyecto_Final_Web.Controllers
 {
@@ -91,6 +92,7 @@ namespace Proyecto_Final_Web.Controllers
             if (ModelState.IsValid)
             {
                 usuario.FechaRegistro = DateTime.Now; // Asigna la fecha actual
+                usuario.Contrasena = PasswordSecurity.HashPassword(usuario.Contrasena);
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -112,6 +114,9 @@ namespace Proyecto_Final_Web.Controllers
             {
                 return NotFound();
             }
+
+            // No mostrar el hash de la contraseña en el formulario
+            usuario.Contrasena = string.Empty;
 
             var userRole = int.Parse(User.FindFirst("IdRol")?.Value ?? "0");
             IQueryable<Role> rolesQuery = _context.Roles;
@@ -152,6 +157,21 @@ namespace Proyecto_Final_Web.Controllers
             {
                 try
                 {
+                    var existingUser = await _context.Usuarios.AsNoTracking().FirstOrDefaultAsync(u => u.IdUsuario == id);
+                    if (existingUser == null)
+                    {
+                        return NotFound();
+                    }
+
+                    if (string.IsNullOrWhiteSpace(usuario.Contrasena))
+                    {
+                        usuario.Contrasena = existingUser.Contrasena;
+                    }
+                    else
+                    {
+                        usuario.Contrasena = PasswordSecurity.HashPassword(usuario.Contrasena);
+                    }
+
                     _context.Update(usuario);
                     await _context.SaveChangesAsync();
                 }
@@ -229,6 +249,7 @@ namespace Proyecto_Final_Web.Controllers
             if (ModelState.IsValid)
             {
                 usuario.FechaRegistro = DateTime.Now;
+                usuario.Contrasena = PasswordSecurity.HashPassword(usuario.Contrasena);
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Acceso");

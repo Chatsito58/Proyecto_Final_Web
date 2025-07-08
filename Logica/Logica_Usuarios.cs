@@ -25,7 +25,7 @@ namespace Proyecto_Final_Web.Logica
                     await conexion.OpenAsync();
 
                     const string consulta = @"
-                        SELECT 
+                        SELECT
                             u.IdUsuario,
                             u.IdRol,
                             u.NombreCompleto,
@@ -37,33 +37,36 @@ namespace Proyecto_Final_Web.Logica
                             r.Descripcion AS RolDescripcion
                         FROM Usuarios u
                         INNER JOIN Roles r ON u.IdRol = r.IdRol
-                        WHERE u.Correo = @correo AND u.Contrasena = @clave";
+                        WHERE u.Correo = @correo";
 
                     using (var comando = new SqlCommand(consulta, conexion))
                     {
                         comando.Parameters.AddWithValue("@correo", correo);
-                        comando.Parameters.AddWithValue("@clave", clave);
 
                         using (var reader = await comando.ExecuteReaderAsync())
                         {
                             if (await reader.ReadAsync())
                             {
-                                usuario = new Usuario
+                                var storedHash = reader.GetString("Contrasena");
+                                if (storedHash == PasswordSecurity.HashPassword(clave))
                                 {
-                                    IdUsuario = reader.GetInt32("IdUsuario"),
-                                    IdRol = reader.GetInt32("IdRol"),
-                                    NombreCompleto = reader.GetString("NombreCompleto"),
-                                    Correo = reader.GetString("Correo"),
-                                    Contrasena = reader.GetString("Contrasena"),
-                                    Telefono = reader.IsDBNull("Telefono") ? null : reader.GetString("Telefono"),
-                                    FechaRegistro = reader.GetDateTime("FechaRegistro"),
-                                    IdRolNavigation = new Role
+                                    usuario = new Usuario
                                     {
+                                        IdUsuario = reader.GetInt32("IdUsuario"),
                                         IdRol = reader.GetInt32("IdRol"),
-                                        Nombre = reader.GetString("RolNombre"),
-                                        Descripcion = reader.GetString("RolDescripcion")
-                                    }
-                                };
+                                        NombreCompleto = reader.GetString("NombreCompleto"),
+                                        Correo = reader.GetString("Correo"),
+                                        Contrasena = storedHash,
+                                        Telefono = reader.IsDBNull("Telefono") ? null : reader.GetString("Telefono"),
+                                        FechaRegistro = reader.GetDateTime("FechaRegistro"),
+                                        IdRolNavigation = new Role
+                                        {
+                                            IdRol = reader.GetInt32("IdRol"),
+                                            Nombre = reader.GetString("RolNombre"),
+                                            Descripcion = reader.GetString("RolDescripcion")
+                                        }
+                                    };
+                                }
                             }
                         }
                     }
