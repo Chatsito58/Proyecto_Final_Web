@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Gráfica de Usuarios por Rol";
+}
+
+<h2>Gráfica de Usuarios por Rol</h2>
+
+<div style="width: 80%; margin: auto;">
+    <canvas id="usuariosChart"></canvas>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('usuariosChart').getContext('2d');
+        var chartData = @Html.Raw(ViewBag.ChartData);
+
+        var labels = chartData.map(function(item) { return item.Rol; });
+        var data = chartData.map(function(item) { return item.Cantidad; });
+
+        var usuariosChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de Usuarios',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}

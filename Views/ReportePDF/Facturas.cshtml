@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Proyecto_Final_Web.Models.Factura>
+@{
+    ViewData["Title"] = "Listado de Facturas";
+    Layout = null; // No usar layout para el PDF
+}
+
+<style>
+    /* Estilo para que el encabezado de la tabla se repita en cada página */
+    thead { display: table-header-group; }
+    tfoot { display: table-row-group; }
+    tr { page-break-inside: avoid; }
+
+    /* Estilos de tabla */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdFactura)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdReserva)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdClienteNavigation.NombreCompleto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdEstadoFacturaNavigation.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdMetodoPagoNavigation.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaEmision)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdFactura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdReserva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdClienteNavigation.NombreCompleto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdEstadoFacturaNavigation.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdMetodoPagoNavigation.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaEmision)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

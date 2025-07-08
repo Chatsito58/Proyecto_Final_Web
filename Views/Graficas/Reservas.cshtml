@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Gráfica de Reservas por Estado";
+}
+
+<h2>Gráfica de Reservas por Estado</h2>
+
+<div style="width: 80%; margin: auto;">
+    <canvas id="reservasChart"></canvas>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('reservasChart').getContext('2d');
+        var chartData = @Html.Raw(ViewBag.ChartData);
+
+        var labels = chartData.map(function(item) { return item.Estado; });
+        var data = chartData.map(function(item) { return item.Cantidad; });
+
+        var reservasChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de Reservas',
+                    data: data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Proyecto_Final_Web.Models.Tarifa>
+@{
+    ViewData["Title"] = "Listado de Tarifas";
+    Layout = null; // No usar layout para el PDF
+}
+
+<style>
+    /* Estilo para que el encabezado de la tabla se repita en cada página */
+    thead { display: table-header-group; }
+    tfoot { display: table-row-group; }
+    tr { page-break-inside: avoid; }
+
+    /* Estilos de tabla */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdTarifa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdCanchaNavigation.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiaSemana)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HoraInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HoraFin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Activa)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdTarifa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCanchaNavigation.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaSemana)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoraInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoraFin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Activa)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

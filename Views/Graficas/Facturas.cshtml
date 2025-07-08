@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Gráfica de Facturas por Estado";
+}
+
+<h2>Gráfica de Facturas por Estado</h2>
+
+<div style="width: 80%; margin: auto;">
+    <canvas id="facturasChart"></canvas>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('facturasChart').getContext('2d');
+        var chartData = @Html.Raw(ViewBag.ChartData);
+
+        var labels = chartData.map(function(item) { return item.Estado; });
+        var data = chartData.map(function(item) { return item.Cantidad; });
+
+        var facturasChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de Facturas',
+                    data: data,
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}
