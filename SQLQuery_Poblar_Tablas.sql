@@ -193,57 +193,57 @@ SET IDENTITY_INSERT [dbo].[MetodosPago] OFF;
 -- *** 8. Inserción de Reservas y Facturas ***
 -- Primero necesitamos obtener algunos IDs de clientes y canchas
 -- Reserva 1: Finalizada
-INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaReserva], [HoraInicio], [HoraFin], [ValorTotal], [IdEstadoReserva], [FechaCreacion], [FechaConfirmacion]) VALUES
-(101, 1, '2025-06-05', '19:00:00', '20:00:00', 90000.00, 4, '2025-06-01 15:00:00', '2025-06-01 15:10:00');
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(101, 1, '2025-06-05 19:00:00', '2025-06-05 20:00:00', 90000.00, 4, '2025-06-01 15:00:00');
 
-INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [NumeroFactura], [FechaEmision], [ValorTotal], [FechaPago]) VALUES
-(1, 101, 2, 3, 'FAC-0001', '2025-06-01 15:00:00', 90000.00, '2025-06-01 15:10:00');
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(1, 101, 2, 3, 90000.00, '2025-06-01 15:00:00');
 
 -- Reserva 2: Finalizada
-INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaReserva], [HoraInicio], [HoraFin], [ValorTotal], [IdEstadoReserva], [FechaCreacion], [FechaConfirmacion]) VALUES
-(111, 2, '2025-06-06', '10:00:00', '11:00:00', 60000.00, 4, '2025-06-02 11:00:00', '2025-06-02 11:15:00');
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(111, 2, '2025-06-06 10:00:00', '2025-06-06 11:00:00', 60000.00, 4, '2025-06-02 11:00:00');
 
-INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [NumeroFactura], [FechaEmision], [ValorTotal], [FechaPago]) VALUES
-(2, 111, 2, 1, 'FAC-0002', '2025-06-02 11:00:00', 60000.00, '2025-06-02 11:15:00');
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(2, 111, 2, 1, 60000.00, '2025-06-02 11:00:00');
 
 -- Reserva 3: Pagada (futura)
-INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaReserva], [HoraInicio], [HoraFin], [ValorTotal], [IdEstadoReserva], [FechaCreacion], [FechaConfirmacion]) VALUES
-(102, 3, '2025-06-20', '15:00:00', '16:00:00', 75000.00, 2, '2025-06-10 09:00:00', '2025-06-10 09:30:00');
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(102, 3, '2025-06-20 15:00:00', '2025-06-20 16:00:00', 75000.00, 2, '2025-06-10 09:00:00');
 
-INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [NumeroFactura], [FechaEmision], [ValorTotal], [FechaPago]) VALUES
-(3, 102, 2, 2, 'FAC-0003', '2025-06-10 09:00:00', 75000.00, '2025-06-10 09:30:00');
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(3, 102, 2, 2, 75000.00, '2025-06-10 09:00:00');
 
 -- Reserva 4: Pagada (futura)
-INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaReserva], [HoraInicio], [HoraFin], [ValorTotal], [IdEstadoReserva], [FechaCreacion], [FechaConfirmacion]) VALUES
-(112, 1, '2025-06-22', '20:00:00', '21:00:00', 110000.00, 2, '2025-06-11 14:00:00', '2025-06-11 14:10:00');
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(112, 1, '2025-06-22 20:00:00', '2025-06-22 21:00:00', 110000.00, 2, '2025-06-11 14:00:00');
 
-INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [NumeroFactura], [FechaEmision], [ValorTotal], [FechaPago]) VALUES
-(4, 112, 2, 3, 'FAC-0004', '2025-06-11 14:00:00', 110000.00, '2025-06-11 14:10:00');
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(4, 112, 2, 3, 110000.00, '2025-06-11 14:00:00');
 
 -- Reserva 5: Pre-reservada
-INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaReserva], [HoraInicio], [HoraFin], [ValorTotal], [IdEstadoReserva], [FechaCreacion], [FechaConfirmacion]) VALUES
-(103, 2, '2025-06-25', '19:00:00', '20:00:00', 90000.00, 1, '2025-06-12 10:00:00', NULL);
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(103, 2, '2025-06-25 19:00:00', '2025-06-25 20:00:00', 90000.00, 1, '2025-06-12 10:00:00');
 
-INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [NumeroFactura], [FechaEmision], [ValorTotal], [FechaPago]) VALUES
-(5, 103, 1, NULL, 'FAC-0005', '2025-06-12 10:00:00', 90000.00, NULL);
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(5, 103, 1, NULL, 90000.00, '2025-06-12 10:00:00');
 
 -- Reserva 6: Pre-reservada
-INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaReserva], [HoraInicio], [HoraFin], [ValorTotal], [IdEstadoReserva], [FechaCreacion], [FechaConfirmacion]) VALUES
-(113, 3, '2025-06-28', '08:00:00', '09:00:00', 60000.00, 1, '2025-06-12 11:00:00', NULL);
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(113, 3, '2025-06-28 08:00:00', '2025-06-28 09:00:00', 60000.00, 1, '2025-06-12 11:00:00');
 
-INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [NumeroFactura], [FechaEmision], [ValorTotal], [FechaPago]) VALUES
-(6, 113, 1, NULL, 'FAC-0006', '2025-06-12 11:00:00', 60000.00, NULL);
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(6, 113, 1, NULL, 60000.00, '2025-06-12 11:00:00');
 
 -- Reserva 7: Cancelada
-INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaReserva], [HoraInicio], [HoraFin], [ValorTotal], [IdEstadoReserva], [FechaCreacion], [FechaConfirmacion]) VALUES
-(104, 1, '2025-06-08', '20:00:00', '21:00:00', 90000.00, 3, '2025-06-03 16:00:00', NULL);
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(104, 1, '2025-06-08 20:00:00', '2025-06-08 21:00:00', 90000.00, 3, '2025-06-03 16:00:00');
 
-INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [NumeroFactura], [FechaEmision], [ValorTotal], [FechaPago]) VALUES
-(7, 104, 4, NULL, 'FAC-0007', '2025-06-03 16:00:00', 90000.00, NULL);
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(7, 104, 4, NULL, 90000.00, '2025-06-03 16:00:00');
 
 -- Reserva 8: Cancelada
-INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaReserva], [HoraInicio], [HoraFin], [ValorTotal], [IdEstadoReserva], [FechaCreacion], [FechaConfirmacion]) VALUES
-(114, 2, '2025-06-23', '11:00:00', '12:00:00', 60000.00, 3, '2025-06-04 09:00:00', NULL);
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(114, 2, '2025-06-23 11:00:00', '2025-06-23 12:00:00', 60000.00, 3, '2025-06-04 09:00:00');
 
-INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [NumeroFactura], [FechaEmision], [ValorTotal], [FechaPago]) VALUES
-(8, 114, 4, NULL, 'FAC-0008', '2025-06-04 09:00:00', 60000.00, NULL);
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(8, 114, 4, NULL, 60000.00, '2025-06-04 09:00:00');
