@@ -396,7 +396,7 @@
                                     @if (User.IsInRole("Cliente"))
                                     {
                                         <input asp-for="Valor" class="form-control" type="hidden" />
-                                        <input value="(Se calculará automáticamente)" class="form-control" readonly />
+                                        <input id="ValorDisplay" value="(Se calculará automáticamente)" class="form-control" readonly />
                                     }
                                     else
                                     {

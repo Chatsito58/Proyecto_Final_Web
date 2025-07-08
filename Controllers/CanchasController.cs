@@ -21,6 +21,17 @@ namespace Proyecto_Final_Web.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> PrecioHora(int id)
+        {
+            var cancha = await _context.Canchas.FindAsync(id);
+            if (cancha == null)
+            {
+                return NotFound();
+            }
+            return Json(cancha.PrecioHora);
+        }
+
         // GET: Canchas
         public async Task<IActionResult> Index()
         {

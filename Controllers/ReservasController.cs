@@ -119,6 +119,16 @@ namespace Proyecto_Final_Web.Controllers
             if (ModelState.IsValid)
             {
                 reserva.FechaCreacion = DateTime.Now;
+                var cancha = await _context.Canchas.AsNoTracking().FirstOrDefaultAsync(c => c.IdCancha == reserva.IdCancha);
+                if (cancha != null)
+                {
+                    var horas = (reserva.FechaHoraFin - reserva.FechaHoraInicio).TotalHours;
+                    if (horas > 0)
+                    {
+                        reserva.Valor = Math.Round((decimal)horas * cancha.PrecioHora, 2);
+                    }
+                }
+
                 _context.Add(reserva);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -223,6 +233,16 @@ namespace Proyecto_Final_Web.Controllers
             {
                 try
                 {
+                    var cancha = await _context.Canchas.AsNoTracking().FirstOrDefaultAsync(c => c.IdCancha == reserva.IdCancha);
+                    if (cancha != null)
+                    {
+                        var horas = (reserva.FechaHoraFin - reserva.FechaHoraInicio).TotalHours;
+                        if (horas > 0)
+                        {
+                            reserva.Valor = Math.Round((decimal)horas * cancha.PrecioHora, 2);
+                        }
+                    }
+
                     _context.Update(reserva);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
