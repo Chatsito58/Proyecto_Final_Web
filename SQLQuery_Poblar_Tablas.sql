@@ -1,3 +1,6 @@
+USE [BDCanchas];
+GO
+
 ﻿-- 1. Primero activar IDENTITY_INSERT para las tablas con columnas de identidad
 SET IDENTITY_INSERT [dbo].[Roles] ON;
 INSERT INTO [dbo].[Roles] ([IdRol], [Nombre], [Descripcion]) VALUES

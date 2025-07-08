@@ -1,3 +1,6 @@
+USE [BDCanchas];
+GO
+
 ﻿-- Primero eliminamos las tablas en orden inverso a su creación (para evitar problemas de dependencias)
 IF OBJECT_ID('dbo.Facturas', 'U') IS NOT NULL
     DROP TABLE [dbo].[Facturas];
