@@ -63,22 +63,9 @@ namespace Proyecto_Final_Web.Controllers
         [Authorize(Roles = "Cliente,Empleado,Administrador,Gerente")]
         public IActionResult Create()
         {
-            var userRole = int.Parse(User.FindFirst("IdRol")?.Value ?? "0");
-            var userId = int.Parse(User.FindFirst("IdUsuario")?.Value ?? "0");
-
             ViewData["IdCancha"] = new SelectList(_context.Canchas, "IdCancha", "Nombre");
-
-            if (userRole == 4) // Cliente
-            {
-                // Si es cliente, solo puede seleccionarse a sí mismo y el estado es pre-reservado
-                ViewData["IdCliente"] = new SelectList(_context.Usuarios.Where(u => u.IdUsuario == userId), "IdUsuario", "NombreCompleto", userId);
-                ViewData["IdEstadoReserva"] = new SelectList(_context.EstadosReservas.Where(e => e.IdEstadoReserva == 1), "IdEstadoReserva", "Nombre", 1); // Pre-reservado
-            }
-            else // Empleado, Administrador, Gerente
-            {
-                ViewData["IdCliente"] = new SelectList(_context.Usuarios.Where(u => u.IdRol == 4), "IdUsuario", "NombreCompleto"); // Solo clientes
-                ViewData["IdEstadoReserva"] = new SelectList(_context.EstadosReservas, "IdEstadoReserva", "Nombre");
-            }
+            ViewData["IdCliente"] = new SelectList(_context.Usuarios.Where(u => u.IdRol == 4), "IdUsuario", "NombreCompleto");
+            ViewData["IdEstadoReserva"] = new SelectList(_context.EstadosReservas, "IdEstadoReserva", "Nombre");
 
             return View();
         }
@@ -88,30 +75,17 @@ namespace Proyecto_Final_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdReserva,IdCliente,IdCancha,FechaHoraInicio,FechaHoraFin")] Reserva reserva)
+        public async Task<IActionResult> Create([Bind("IdReserva,IdCliente,IdCancha,FechaHoraInicio,FechaHoraFin,IdEstadoReserva,Valor")] Reserva reserva)
         {
             ModelState.Remove("IdCanchaNavigation");
             ModelState.Remove("IdClienteNavigation");
             ModelState.Remove("IdEstadoReservaNavigation");
 
-            var userRole = int.Parse(User.FindFirst("IdRol")?.Value ?? "0");
-            var userId = int.Parse(User.FindFirst("IdUsuario")?.Value ?? "0");
-
-            if (userRole == 4) // Cliente
+            // Validar que el usuario seleccionado sea un cliente
+            var cliente = await _context.Usuarios.FirstOrDefaultAsync(u => u.IdUsuario == reserva.IdCliente && u.IdRol == 4);
+            if (cliente == null)
             {
-                reserva.IdCliente = userId; // El cliente solo puede reservar para sí mismo
-                reserva.IdEstadoReserva = 1; // Estado inicial: pre-reservado
-                reserva.Valor = 0; // Asignar un valor predeterminado para clientes
-            }
-            else // Empleado, Administrador, Gerente
-            {
-                // Asegurar que solo se puedan crear reservas para clientes
-                var cliente = await _context.Usuarios.FirstOrDefaultAsync(u => u.IdUsuario == reserva.IdCliente && u.IdRol == 4);
-                if (cliente == null)
-                {
-                    ModelState.AddModelError("IdCliente", "Solo se pueden crear reservas para usuarios de tipo Cliente.");
-                }
-                reserva.IdEstadoReserva = 1; // Estado inicial: pre-reservado
+                ModelState.AddModelError("IdCliente", "Solo se pueden crear reservas para usuarios de tipo Cliente.");
             }
 
             if (ModelState.IsValid)
@@ -124,16 +98,8 @@ namespace Proyecto_Final_Web.Controllers
 
             // Recargar SelectLists en caso de error de validación
             ViewData["IdCancha"] = new SelectList(_context.Canchas, "IdCancha", "Nombre", reserva.IdCancha);
-            if (userRole == 4)
-            {
-                ViewData["IdCliente"] = new SelectList(_context.Usuarios.Where(u => u.IdUsuario == userId), "IdUsuario", "NombreCompleto", userId);
-                ViewData["IdEstadoReserva"] = new SelectList(_context.EstadosReservas.Where(e => e.IdEstadoReserva == 1), "IdEstadoReserva", "Nombre", 1);
-            }
-            else
-            {
-                ViewData["IdCliente"] = new SelectList(_context.Usuarios.Where(u => u.IdRol == 4), "IdUsuario", "NombreCompleto", reserva.IdCliente);
-                ViewData["IdEstadoReserva"] = new SelectList(_context.EstadosReservas, "IdEstadoReserva", "Nombre", reserva.IdEstadoReserva);
-            }
+            ViewData["IdCliente"] = new SelectList(_context.Usuarios.Where(u => u.IdRol == 4), "IdUsuario", "NombreCompleto", reserva.IdCliente);
+            ViewData["IdEstadoReserva"] = new SelectList(_context.EstadosReservas, "IdEstadoReserva", "Nombre", reserva.IdEstadoReserva);
             return View(reserva);
         }
 
