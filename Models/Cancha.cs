@@ -15,6 +15,8 @@ public partial class Cancha
 
     public string? Descripcion { get; set; }
 
+    public decimal PrecioHora { get; set; }
+
     public bool Activa { get; set; }
 
     public DateTime FechaCreacion { get; set; }
