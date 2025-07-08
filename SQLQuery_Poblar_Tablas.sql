@@ -136,17 +136,17 @@ INSERT INTO [dbo].[Usuarios] ([IdRol], [NombreCompleto], [Correo], [Contrasena],
 (4, 'Ana Sofía Velásquez', 'ana.velasquez@gmail.com', 'cliente123', '3992345678', '2025-07-29 19:50:00');
 
 -- 3. Insertar canchas
-INSERT INTO [dbo].[Canchas] ([Nombre], [TipoCancha], [Ubicacion], [Descripcion], [Activa], [FechaCreacion], [FechaActualizacion]) VALUES
-('Cancha Futbol 5 - Norte', 'Fútbol 5', 'Calle 100 # 15-50, Bogotá', 'Cancha de fútbol 5 con grama sintética de última generación.', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
-('Cancha Baloncesto - Sur', 'Baloncesto', 'Carrera 30 # 3-20, Bogotá', 'Cancha cubierta de baloncesto con piso de madera.', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
-('Cancha Tenis 1 - Occidente', 'Tenis', 'Avenida Boyacá # 70-80, Bogotá', 'Cancha de tenis de polvo de ladrillo.', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
-('Cancha Futbol 7 - Oriente', 'Fútbol 7', 'Carrera 7 # 170-10, Bogotá', 'Cancha de fútbol 7 al aire libre con iluminación.', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
-('Cancha Voleibol - Centro', 'Voleibol', 'Calle 19 # 5-30, Bogotá', 'Cancha de voleibol cubierta, ideal para entrenamientos.', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
-('Cancha Squash 1 - Norte', 'Squash', 'Calle 127 # 7-40, Bogotá', 'Cancha de squash profesional con paredes de vidrio.', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
-('Cancha Futbol 5 - Chapinero', 'Fútbol 5', 'Calle 59 # 13-10, Bogotá', 'Cancha de fútbol 5 con grama natural y graderías.', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
-('Cancha Baloncesto - Suba', 'Baloncesto', 'Avenida Ciudad de Cali # 139-00, Bogotá', 'Cancha de baloncesto al aire libre en complejo deportivo.', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
-('Cancha Tenis 2 - Occidente', 'Tenis', 'Calle 26 # 68-50, Bogotá', 'Cancha de tenis rápida (cemento).', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
-('Cancha Futbol 7 - Usme', 'Fútbol 7', 'Carrera 14 # 97-40, Bogotá', 'Cancha de fútbol 7 con césped sintético y buenos vestuarios.', 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00');
+INSERT INTO [dbo].[Canchas] ([Nombre], [TipoCancha], [Ubicacion], [Descripcion], [PrecioHora], [Activa], [FechaCreacion], [FechaActualizacion]) VALUES
+('Cancha Futbol 5 - Norte', 'Fútbol 5', 'Calle 100 # 15-50, Bogotá', 'Cancha de fútbol 5 con grama sintética de última generación.', 80000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
+('Cancha Baloncesto - Sur', 'Baloncesto', 'Carrera 30 # 3-20, Bogotá', 'Cancha cubierta de baloncesto con piso de madera.', 75000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
+('Cancha Tenis 1 - Occidente', 'Tenis', 'Avenida Boyacá # 70-80, Bogotá', 'Cancha de tenis de polvo de ladrillo.', 90000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
+('Cancha Futbol 7 - Oriente', 'Fútbol 7', 'Carrera 7 # 170-10, Bogotá', 'Cancha de fútbol 7 al aire libre con iluminación.', 95000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
+('Cancha Voleibol - Centro', 'Voleibol', 'Calle 19 # 5-30, Bogotá', 'Cancha de voleibol cubierta, ideal para entrenamientos.', 70000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
+('Cancha Squash 1 - Norte', 'Squash', 'Calle 127 # 7-40, Bogotá', 'Cancha de squash profesional con paredes de vidrio.', 85000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
+('Cancha Futbol 5 - Chapinero', 'Fútbol 5', 'Calle 59 # 13-10, Bogotá', 'Cancha de fútbol 5 con grama natural y graderías.', 82000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
+('Cancha Baloncesto - Suba', 'Baloncesto', 'Avenida Ciudad de Cali # 139-00, Bogotá', 'Cancha de baloncesto al aire libre en complejo deportivo.', 76000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
+('Cancha Tenis 2 - Occidente', 'Tenis', 'Calle 26 # 68-50, Bogotá', 'Cancha de tenis rápida (cemento).', 88000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00'),
+('Cancha Futbol 7 - Usme', 'Fútbol 7', 'Carrera 14 # 97-40, Bogotá', 'Cancha de fútbol 7 con césped sintético y buenos vestuarios.', 93000.00, 1, '2025-06-01 10:00:00', '2025-06-01 10:00:00');
 
 -- 4. Insertar tarifas
 INSERT INTO [dbo].[Tarifas] ([IdCancha], [HoraInicio], [HoraFin], [DiaSemana], [Valor], [Descripcion], [Activa]) VALUES
