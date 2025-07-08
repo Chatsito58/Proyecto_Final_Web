@@ -24,16 +24,14 @@ namespace Proyecto_Final_Web.Controllers
         // GET: Reservas
         public async Task<IActionResult> Index()
         {
-            var userRole = int.Parse(User.FindFirst("IdRol")?.Value ?? "0");
-            var userId = int.Parse(User.FindFirst("IdUsuario")?.Value ?? "0");
+            IQueryable<Reserva> query = _context.Reservas
+                .Include(r => r.IdCanchaNavigation)
+                .Include(r => r.IdClienteNavigation)
+                .Include(r => r.IdEstadoReservaNavigation);
 
-            IQueryable<Reserva> query = _context.Reservas.Include(r => r.IdCanchaNavigation).Include(r => r.IdClienteNavigation).Include(r => r.IdEstadoReservaNavigation);
-
-            // Clientes solo ven sus propias reservas
-            if (userRole == 4)
-            {
-                query = query.Where(r => r.IdCliente == userId);
-            }
+            // Anteriormente los clientes solo podían ver sus reservas.
+            // Ahora todos los roles, incluidos los clientes, visualizan todas
+            // las reservas. No se aplica filtro por usuario.
 
             return View(await query.ToListAsync());
         }
