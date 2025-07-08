@@ -559,7 +559,7 @@
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label asp-for="IdRol" class="control-label">Rol</label>
-                                    <select asp-for="IdRol" class="form-control" asp-items="ViewBag.IdRol" @(isPublicRegister ? "disabled" : "")>
+                                    <select asp-for="IdRol" class="form-control" asp-items="ViewBag.IdRol" disabled="@isPublicRegister">
                                         <option value="">-- Seleccione un Rol --</option>
                                     </select>
                                     @if (isPublicRegister)
