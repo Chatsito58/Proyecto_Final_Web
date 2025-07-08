@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Final_Web.Controllers
 {
+    [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
     public class AccesoController : Controller
     {
         private readonly Logica_Usuarios _logicaUsuarios;

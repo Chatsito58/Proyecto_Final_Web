@@ -7,6 +7,7 @@ using Rotativa.AspNetCore;
 namespace Proyecto_Final_Web.Controllers
 {
     [Authorize(Roles = "Empleado,Administrador,Gerente")]
+    [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
     public class ReportePDFController : Controller
     {
         private readonly BDCanchasContext contexto;

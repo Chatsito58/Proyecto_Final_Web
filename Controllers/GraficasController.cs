@@ -8,7 +8,8 @@ using Newtonsoft.Json;
 
 namespace Proyecto_Final_Web.Controllers
 {
-    [Authorize(Roles = "Empleado,Administrador,Gerente")] 
+    [Authorize(Roles = "Empleado,Administrador,Gerente")]
+    [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
     public class GraficasController : Controller
     {
         private readonly BDCanchasContext _context;
