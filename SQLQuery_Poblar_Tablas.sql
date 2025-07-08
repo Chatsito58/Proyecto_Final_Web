@@ -1,10 +1,10 @@
 ﻿-- 1. Primero activar IDENTITY_INSERT para las tablas con columnas de identidad
 SET IDENTITY_INSERT [dbo].[Roles] ON;
 INSERT INTO [dbo].[Roles] ([IdRol], [Nombre], [Descripcion]) VALUES
-(1, 'gerente', 'Tiene control total sobre el sistema, incluyendo la gestión de canchas y usuarios.'),
-(2, 'administrador', 'Gestiona las reservas, tarifas y clientes de su(s) cancha(s) asignada(s).'),
-(3, 'empleado', 'Asiste en la gestión de reservas y atención al cliente.'),
-(4, 'cliente', 'Puede registrarse, consultar disponibilidad y realizar reservas.');
+(1, 'Gerente', 'Tiene control total sobre el sistema, incluyendo la gestión de canchas y usuarios.'),
+(2, 'Administrador', 'Gestiona las reservas, tarifas y clientes de su(s) cancha(s) asignada(s).'),
+(3, 'Empleado', 'Asiste en la gestión de reservas y atención al cliente.'),
+(4, 'Cliente', 'Puede registrarse, consultar disponibilidad y realizar reservas.');
 SET IDENTITY_INSERT [dbo].[Roles] OFF;
 
 -- 2. Insertar usuarios (no necesitamos IDENTITY_INSERT aquí porque no especificamos IdUsuario)
