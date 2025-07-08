@@ -247,3 +247,72 @@ INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [Fecha
 
 INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
 (8, 114, 4, NULL, 60000.00, '2025-06-04 09:00:00');
+-- Reserva 9: Finalizada
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(115, 4, '2025-06-09 18:00:00', '2025-06-09 19:00:00', 90000.00, 4, '2025-06-05 12:00:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(9, 115, 2, 1, 90000.00, '2025-06-05 12:00:00');
+
+-- Reserva 10: Finalizada
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(116, 5, '2025-06-07 08:00:00', '2025-06-07 09:00:00', 60000.00, 4, '2025-06-02 09:00:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(10, 116, 2, 2, 60000.00, '2025-06-02 09:00:00');
+
+-- Reserva 11: Pagada (futura)
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(117, 6, '2025-06-30 17:00:00', '2025-06-30 18:00:00', 110000.00, 2, '2025-06-15 13:00:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(11, 117, 2, 3, 110000.00, '2025-06-15 13:00:00');
+
+-- Reserva 12: Pagada (futura)
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(118, 7, '2025-07-02 16:00:00', '2025-07-02 17:00:00', 75000.00, 2, '2025-06-16 14:00:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(12, 118, 2, 1, 75000.00, '2025-06-16 14:00:00');
+
+-- Reserva 13: Pre-reservada
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(119, 3, '2025-07-05 09:00:00', '2025-07-05 10:00:00', 60000.00, 1, '2025-06-20 10:00:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(13, 119, 1, NULL, 60000.00, '2025-06-20 10:00:00');
+
+-- Reserva 14: Pre-reservada
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(120, 8, '2025-07-07 19:00:00', '2025-07-07 20:00:00', 90000.00, 1, '2025-06-20 11:00:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(14, 120, 1, NULL, 90000.00, '2025-06-20 11:00:00');
+
+-- Reserva 15: Cancelada
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(121, 9, '2025-06-15 14:00:00', '2025-06-15 15:00:00', 75000.00, 3, '2025-06-09 09:30:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(15, 121, 4, NULL, 75000.00, '2025-06-09 09:30:00');
+
+-- Reserva 16: Cancelada
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(122, 10, '2025-06-17 21:00:00', '2025-06-17 22:00:00', 90000.00, 3, '2025-06-10 10:30:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(16, 122, 4, NULL, 90000.00, '2025-06-10 10:30:00');
+
+-- Reserva 17: Finalizada
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(123, 2, '2025-07-01 08:00:00', '2025-07-01 09:00:00', 60000.00, 4, '2025-06-12 08:00:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(17, 123, 2, 3, 60000.00, '2025-06-12 08:00:00');
+
+-- Reserva 18: Pagada (futura)
+INSERT INTO [dbo].[Reservas] ([IdCliente], [IdCancha], [FechaHoraInicio], [FechaHoraFin], [Valor], [IdEstadoReserva], [FechaCreacion]) VALUES
+(124, 4, '2025-07-08 18:00:00', '2025-07-08 19:00:00', 110000.00, 2, '2025-06-20 12:00:00');
+
+INSERT INTO [dbo].[Facturas] ([IdReserva], [IdCliente], [IdEstadoFactura], [IdMetodoPago], [Total], [FechaEmision]) VALUES
+(18, 124, 2, 1, 110000.00, '2025-06-20 12:00:00');
