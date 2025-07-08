@@ -53,6 +53,7 @@ CREATE TABLE [dbo].[Canchas]
     [TipoCancha] NVARCHAR(50) NULL,
     [Ubicacion] NVARCHAR(255) NULL,
     [Descripcion] NVARCHAR(MAX) NULL,
+    [PrecioHora] DECIMAL(10,2) NOT NULL,
     [Activa] BIT NOT NULL DEFAULT 1,
     [FechaCreacion] DATETIME NOT NULL DEFAULT GETDATE(),
     [FechaActualizacion] DATETIME NOT NULL DEFAULT GETDATE()
