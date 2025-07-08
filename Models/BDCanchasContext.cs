@@ -57,6 +57,7 @@ public partial class BDCanchasContext : DbContext
             entity.Property(e => e.Nombre).HasMaxLength(100);
             entity.Property(e => e.TipoCancha).HasMaxLength(50);
             entity.Property(e => e.Ubicacion).HasMaxLength(255);
+            entity.Property(e => e.PrecioHora).HasColumnType("decimal(10, 2)");
         });
 
         modelBuilder.Entity<EstadosFactura>(entity =>
