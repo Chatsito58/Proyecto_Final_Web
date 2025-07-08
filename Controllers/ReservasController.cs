@@ -74,6 +74,8 @@ namespace Proyecto_Final_Web.Controllers
             {
                 // Si es cliente, solo puede seleccionarse a sí mismo y el estado es pre-reservado
                 ViewData["IdCliente"] = new SelectList(_context.Usuarios.Where(u => u.IdUsuario == userId), "IdUsuario", "NombreCompleto", userId);
+                // IMPORTANTE: la reserva de un cliente siempre inicia como Pre-reservado (IdEstadoReserva = 1).
+                // Varias pruebas dependen de que esta opción esté fija y visible únicamente con el valor 1.
                 ViewData["IdEstadoReserva"] = new SelectList(_context.EstadosReservas.Where(e => e.IdEstadoReserva == 1), "IdEstadoReserva", "Nombre", 1); // Pre-reservado
             }
             else // Empleado, Administrador, Gerente
@@ -102,6 +104,8 @@ namespace Proyecto_Final_Web.Controllers
             if (userRole == 4) // Cliente
             {
                 reserva.IdCliente = userId; // El cliente solo puede reservar para sí mismo
+                // IMPORTANTE: las reservas creadas por clientes siempre deben guardarse en estado Pre-reservado.
+                // No eliminar esta asignación, existen pruebas automatizadas que verifican este comportamiento.
                 reserva.IdEstadoReserva = 1; // Estado inicial: pre-reservado
                 reserva.Valor = 0; // Asignar un valor predeterminado para clientes
             }
@@ -113,6 +117,8 @@ namespace Proyecto_Final_Web.Controllers
                 {
                     ModelState.AddModelError("IdCliente", "Solo se pueden crear reservas para usuarios de tipo Cliente.");
                 }
+                // IMPORTANTE: incluso cuando la reserva es creada por personal interno, debe comenzar en estado Pre-reservado.
+                // Mantener esta asignación garantiza coherencia con la lógica de negocio y evita errores en pruebas.
                 reserva.IdEstadoReserva = 1; // Estado inicial: pre-reservado
             }
 
