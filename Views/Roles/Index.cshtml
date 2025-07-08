@@ -434,7 +434,7 @@
                                             </td>
                                             <td data-label="Acciones">
                                                 <div class="d-flex justify-content-center justify-content-md-start">
-                                                    @if (User.IsInRole("gerente"))
+                                                    @if (User.IsInRole("Gerente"))
                                                     {
                                                         <a asp-action="Edit" asp-route-id="@item.IdRol" class="btn-action-edit">
                                                             <i class="fas fa-edit"></i> Editar
